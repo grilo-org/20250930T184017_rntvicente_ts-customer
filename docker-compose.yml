@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  customer-api:
+    image: customer-api:latest
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    ports:
+      - '3000:3000'
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'
+
+volumes:
+  mongo-data:
